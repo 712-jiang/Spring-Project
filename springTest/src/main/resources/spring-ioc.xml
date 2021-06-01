@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+<!--设置Bean别名-->
+    <alias name="user" alias="tulingxueyuan"></alias>
+    <bean class="com.sztu.slq.User" id="user">
+        <description>用来描述一个Bean用来干嘛的</description>
+    </bean>
+<!--    使用import可以导入其他spring.xml的配置文件-->
+<!--    <import resource="spring-ioc2.xml"></import>-->
+<!--    依赖注入 Begin-->
+<!--    基于stter方法的依赖注入-->
+<!--    注意：&ndash;&gt;name 是对应变量getset方法的名字，eg：-->
+<!--    public void setIdtest(Integer id)——name="idtest"-->
+    <bean class="com.sztu.slq.User"  id="user6">
+        <property name="id" value="1"></property>
+        <property name="username" value="qingqing"></property>
+        <property name="reslname" value="kiki"></property>
+    </bean>
+<!--    基于构造函数的依赖注入,User中需要有一个有参构造函数-->
+<!--    1.参数name可以省略，也可以使用index，下标从0开始
+        2.基于name属性设置构造函数参数
+        3.如果不使用constructor-arg，默认调用无参构造函数
+-->
+    <bean class="com.sztu.slq.User"  id="user7">
+        <constructor-arg name="id" value="1"></constructor-arg>
+        <constructor-arg name="username" value="qingqing"></constructor-arg>
+        <constructor-arg name="reslname" value="kiki"></constructor-arg>
+    </bean>
+
+<!--    基于复杂数据类型的依赖注入-->
+<!--    设置null、空值、class中变量值-->
+
+<!--        引用内部bean--><bean class="com.sztu.slq.Person" id="person">
+    <property name="age" value="20"></property>
+    <property name="job" value="computer"></property>
+    <!--        注入null-->
+    <property name="name">
+        <null></null>
+    </property>
+    <!--        引用外部类-->
+    <!--        <property name="wife" ref="wife"></property>-->
+        <property name="wife">
+            <bean class="com.sztu.slq.Wife">
+                <property name="name" value="someone"></property>
+                <property name="age" value="20"></property>
+            </bean>
+        </property>
+<!--        List——注入-->
+        <property name="hobbies">
+            <list>
+                <value>游泳</value>
+                <value>旅游</value>
+            </list>
+        </property>
+<!--        Map——注入-->
+        <property name="course">
+            <map>
+                <entry key="1" value="java"></entry>
+                <entry key="2" value="Spring"></entry>
+            </map>
+        </property>
+    </bean>
+<!--    <bean class="com.sztu.slq.Wife" id="wife"></bean>-->
+
+<!--    依赖注入 End-->
+
+<!--    <bean class="cn.tulingxueyuan.beans.Test"></bean>-->
+</beans>

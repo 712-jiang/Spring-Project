@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="spring-jcl-5.2.6.BUILD-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../Spring_jar/spring-framework-5.2.6.BUILD-SNAPSHOT/libs/spring-jcl-5.2.6.BUILD-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+<!--    一个类在另一个类之前加载：depends-on-->
+<!--    <bean class="com.sztu.slq.User" name="user" depends-on="wife"></bean>-->
+<!--    <bean class="com.sztu.slq.Wife" name="wife"></bean>-->
+<!--    懒加载-->
+<!--    <bean class="com.sztu.slq.Wife" name="wife" lazy-init="true"></bean>-->
+<!--    bean作用域scope
+    singleton——单例
+    prototype——多例——有利于线程安全
+    request、session、application、websocket
+-->
+<!--    <bean class="com.sztu.slq.Person" name="person" scope="prototype"></bean>-->
+<!--    使用静态工厂方法实例化Bean
+        主动干预实例化过程
+-->
+<!--    <bean class="com.sztu.slq.Person" id="person" factory-method="creatPersonFactor"></bean>-->
+<!--    使用实例工厂方法实例化-->
+<!--    <bean class="com.sztu.slq.PersonFactory" name="personFactory"></bean>-->
+<!--    <bean class="com.sztu.slq.Person" id="person" factory-bean="personFactory" factory-method="creatPersonFactorMethod"></bean>-->
+
+<!--    自动注入
+        当名字不匹配的时候，根据参数类型匹配
+        当匹配多个类型，可以：1.设置某个Bean为主要的bean primary=“true”
+                            2.bean autowire-candidate=false——放弃自动注入
+-->
+    <bean class="com.sztu.slq.Person" name="person" autowire="byType"></bean>
+    <bean class="com.sztu.slq.Wife" name="wife2">
+        <property name="age" value="12"></property>
+    </bean>
+
+<!--    生命周期回调-->
+<!--    <bean class="com.sztu.slq.Person" name="person"></bean>-->
+    <bean class="com.sztu.slq.Person" init-method="initMethod" destroy-method="destroyMethod"></bean>
+
+<!--    配置第三方Bean-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="name" value="${mysql.name}"></property>
+        <property name="password" value="${mysql.password}"></property>
+        <property name="url" value="${mysql.url}"></property>
+        <property name="driverClassName" value="${mysql.driverClassName}"></property>
+    </bean>
+<!--    引用外部属性-->
+    <context:property-placeholder location="db.properties"></context:property-placeholder>
+</beans>
+
+

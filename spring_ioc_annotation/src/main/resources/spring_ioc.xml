@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    <bean class="cn.sztu.slq.controller.UserController" name="userController"></bean>-->
+<!--   重点！！
+       使用注解创建实例：
+       @Controller
+       @Service
+       @Repository
+       @Component 外部类创建Bean
+       1.在不同功能的类前增加注解
+       2.再扫描包：component-scan,base-package:所有类所在文件夹名
+       3.注解不管添加在什么功能的类前，都可以创建实例，划分功能可单独处理某功能类
+       4.排除扫描——设置需要排除扫描的选项:<context:exclude-filter
+         包含扫描——设置需要包含扫描的选项：<context:include-filter
+            type:
+                annotation:——根据注解的完整限定名设置排除/包含
+                assignable:——根据类的完整限定名设置排除/包含
+            expression：写对应注解/类的完整限定名
+       5.排除+包含——use-default-filters="false" 排除所有的包，include-filter 再包含其中某个包
+       6.使用注解方式将类注册为Bean，默认类名首字母小写作为Bean的id
+-->
+<!--    <context:component-scan base-package="cn.sztu.slq" use-default-filters="false">-->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>-->
+<!--        <context:include-filter type="assignable" expression="cn.sztu.slq.controller.UserController"/>-->
+<!--    </context:component-scan>-->
+    <context:component-scan base-package="cn.sztu.slq"></context:component-scan>
+
+
+</beans>

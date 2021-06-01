@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    控制反转-->
+<!--    <bean class="dao.impl.UserDaoOracleImpl" id="userDaoOracle"/>-->
+<!--    更换类的时候只需要修改.xml文件-->
+    <bean class="dao.impl.UserDaoMysqlImpl" id="userDaoOracle"/>
+    <bean class="seivice.impl.UserSeiviceImpl" id="userSeivice">
+<!--        依赖注入-->
+        <property name="dao" ref="userDaoOracle"/>
+    </bean>
+    <bean class="seivice.impl.UserTempServiceImpl" id="userSeivice">
+        <!--        依赖注入-->
+        <property name="dao" ref="userDaoOracle"/>
+    </bean>
+</beans>
+
+<!--将两个对象UserDaoQracleImpl和userServiceImpl都通过Spring管理-->

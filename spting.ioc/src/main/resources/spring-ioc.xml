@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+<!--设置Bean别名-->
+    <alias name="user" alias="tulingxueyuan"></alias>
+    <bean class="cn.tulingxueyuan.beans.User" id="user">
+        <description>用来描述一个Bean用来干嘛的</description>
+    </bean>
+<!--    使用import可以导入其他spring.xml的配置文件-->
+<!--    <import resource="spring-ioc2.xml"></import>-->
+<!--    依赖注入 Begin-->
+<!--    基于stter方法的依赖注入-->
+<!--    注意：&ndash;&gt;name 是对应变量getset方法的名字，eg：-->
+<!--    public void setIdtest(Integer id)——name="idtest"-->
+    <bean class="cn.tulingxueyuan.beans.User" id="user6">
+        <property name="id" value="1"></property>
+        <property name="username" value="qingqing"></property>
+        <property name="reslname" value="kiki"></property>
+    </bean>
+<!--    基于构造函数的依赖注入,User中需要有一个有参构造函数-->
+    <bean class="cn.tulingxueyuan.beans.User" id="user7">
+        <constructor-arg name="id" value="1"></constructor-arg>
+        <constructor-arg name="username" value="qingqing"></constructor-arg>
+        <constructor-arg name="reslname" value="kiki"></constructor-arg>
+    </bean>
+
+<!--    依赖注入 End-->
+
+    <bean class="cn.tulingxueyuan.beans.Test"></bean>
+</beans>
